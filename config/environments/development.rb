@@ -54,6 +54,16 @@ Rails.application.configure do
   
   # For ImageMagick
   Paperclip.options[:command_path] = "/usr/local/bin/"
+
+  config.paperclip_defaults = {
+    storage: :s3,
+    s3_region: ENV['AWS_S3_REGION'],
+    s3_credentials: {
+      bucket: ENV['AWS_S3_BUCKET'],
+      access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+      secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
+    }
+  }
   
   # Needed for Devise
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
