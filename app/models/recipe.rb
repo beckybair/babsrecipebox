@@ -13,7 +13,7 @@ class Recipe < ActiveRecord::Base
 
   validates :title, :description, :image, presence: true
                                   
-  has_attached_file :image, :region => ENV['AWS_S3_REGION'], :bucket => ENV['AWS_S3_BUCKET'], styles: { :medium => "300x300#" }
+  has_attached_file :image, :s3_region => ENV['AWS_S3_REGION'], :bucket => ENV['AWS_S3_BUCKET'], styles: { :medium => "300x300#" }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
   
   
